@@ -9,7 +9,7 @@ describe("user-onboarding", () => {
   });
 
   const nameInput = () => cy.get('input[name="name"]');
-  const toppingCheck = () => cy.get('input[name="toppings"]');
+  const toppingCheck = () => cy.get('input[name="pepperoni"]');
   const submit = () => cy.get("button");
 
   it("type in name", () => {

@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default function Form(props) {
   const { values, change, submit, errors } = props;
 
@@ -10,8 +11,7 @@ export default function Form(props) {
 
   const onChange = (e) => {
     const { name, value, type, checked } = e.target;
-    const useValue = type === "checkbox" ? checked : value;
-    change(name, useValue);
+    change(name, type === 'checkbox' ? checked : value);
   };
 
   return (
@@ -34,12 +34,12 @@ export default function Form(props) {
           </label>
           <label>
             <h2>Select Your Size</h2>
-            <select name="role">
+            <select name="size" value={values.size} onChange={onChange}>
               <option value="">- Select a size -</option>
               <option value="small">Small</option>
               <option value="medium">Medium</option>
               <option value="large">Large</option>
-              <option value="extra large">Extra Large</option>
+              <option value="extralarge">Extra Large</option>
             </select>
           </label>
         </div>
@@ -47,54 +47,54 @@ export default function Form(props) {
           <h2>Select Your Sauce</h2>
           <label>
             Tomato Sauce
-            <input type="radio" name="radio" value="tomato sauce" />
+            <input type="radio" name="sauce" value="tomato-sauce" checked={values.sauce === 'tomato-sauce'} onChange={onChange}/>
           </label>
           <br></br>
           <label>
             Garlic
-            <input type="radio" name="radio" value="garlic" />
+            <input type="radio" name="sauce" value="garlic" checked={values.sauce === 'garlic'} onChange={onChange}/>
           </label>
           <br></br>
           <label>
             Alfredo
-            <input type="radio" name="radio" value="alfredo" />
+            <input type="radio" name="sauce" value="alfredo" checked={values.sauce === 'alfredo'} onChange={onChange}/>
           </label>
           <br></br>
           <label>
             Cheese Sauce
-            <input type="radio" name="radio" value="cheese sauce" />
+            <input type="radio" name="sauce" value="cheesesauce" checked={values.sauce === 'cheesesauce'} onChange={onChange}/>
           </label>
         </div>
         <div>
           <h2>Select Your Toppings</h2>
           <label>
             Pepperoni
-            <input type="checkbox" name="pepperoni" />
+            <input type="checkbox" name="pepperoni" checked={values.pepperoni} onChange={ onChange }/>
           </label>
           <br></br>
           <label>
             Bacon
-            <input type="checkbox" name="bacon" />
+            <input type="checkbox" name="bacon" checked={values.bacon} onChange={ onChange }/>
           </label>
           <br></br>
           <label>
             Mushrooms
-            <input type="checkbox" name="mushrooms" />
+            <input type="checkbox" name="mushrooms" checked={values.mushrooms} onChange={ onChange }/>
           </label>
           <br></br>
           <label>
             Chicken
-            <input type="checkbox" name="chicken" />
+            <input type="checkbox" name="chicken" checked={values.chicken} onChange={ onChange }/>
           </label>
           <br></br>
           <label>
-            Green Pepper
-            <input type="checkbox" name="green pepper" />
+            GreenPepper
+            <input type="checkbox" name="greenpepper" checked={values.greenpepper} onChange={ onChange }/>
           </label>
           <br></br>
           <label>
             Pineapple
-            <input type="checkbox" name="pineapple" />
+            <input type="checkbox" name="pineapple" checked={ values.pineapple} onChange={ onChange }/>
           </label>
           <br></br>
         </div>
@@ -102,7 +102,7 @@ export default function Form(props) {
           <h2>Special Instructions</h2>
           <label>
             Anything to Add?
-            <input type="text" name="special instructions" value={values.notes}/>
+            <input type="text" name="notes" onChange={ onChange } />
           </label>
         </div>
         <div>

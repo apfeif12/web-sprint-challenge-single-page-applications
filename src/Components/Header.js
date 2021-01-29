@@ -11,18 +11,25 @@ import Pizza from "./Pizza.js";
 const initialFormValues = {
   name: "",
   size: "",
-  toppings: "",
+  sauce: "",
   notes: "",
+
+  pepperoni: false,
+  bacon: false,
+  mushrooms: false,
+  chicken: false,
+  greenpepper: false,
+  pineapple: false,
 };
 const initialFormErrors = {
   name: "",
 };
-const initialOrders = [];
+const initialPizza = [];
 
 export default function Header() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errors, setErrors] = useState(initialFormErrors);
-  const [pizza, setPizza] = useState(initialOrders);
+  const [pizza, setPizza] = useState(initialPizza);
 
   const createNewOrder = (newPizza) => {
     axios
@@ -62,8 +69,13 @@ export default function Header() {
     const newPizza = {
       name: formValues.name.trim(),
       size: formValues.size,
-      toppings: formValues.toppings,
+      sauce: formValues.sauce,
       notes: formValues.notes,
+      toppings: ["pepperoni", "bacon", "mushrooms", "chicken", "greenpepper", "pineapple"].filter(
+        (toppings) => {
+          return formValues[toppings];
+        }
+      ),
     };
     createNewOrder(newPizza);
   };
@@ -95,7 +107,7 @@ export default function Header() {
       </nav>
       <div>
         {pizza.map((user) => {
-          return <Pizza details={user} value={formValues} />;
+          return <Pizza details={user} />;
         })}
       </div>
     </div>
